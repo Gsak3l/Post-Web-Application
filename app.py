@@ -33,7 +33,6 @@ app.config["UPLOAD_FOLDER"] = UPLOAD_FOLDER
 mysql = MySQL(app)
 CORS(app)
 
-# firebase config
 config = {
     "apiKey": "",
     "authDomain": "",
@@ -43,7 +42,7 @@ config = {
     "messagingSenderId": "",
     "appId": "",
     "measurementId": "",
-    "serviceAccount": "keyfile.json"
+    "serviceAccount": ""
 }
 
 #init firebase app
