@@ -4,11 +4,14 @@ from flask import request
 from flask import jsonify
 import json 
 # importing flask mysqldb
+from flask_mysqldb import MySQL
+
 from flask_cors import CORS
 import os
 import uuid
 from werkzeug.utils import secure_filename
 # importing pyrebase
+import pyrebase
 
 
 # temp uploads
@@ -21,6 +24,34 @@ def allowed_files(filename): # this takes the last part of the file and checks i
 
 
 app = Flask(__name__)
+# config
+app.config["MYSQL_HOST"] = "localhost"
+app.config["MYSQL_USER"] = "root"
+app.config["MYSQL_PASSWORD"] = ""
+app.config["MYSQ_DB"] = "flaskposts"
+app.config["UPLOAD_FOLDER"] = UPLOAD_FOLDER
+mysql = MySQL(app)
+CORS(app)
+
+# firebase config
+config = {
+    "apiKey": "",
+    "authDomain": "",
+    "databaseURL": "",
+    "projectId": "",
+    "storageBucket": "",
+    "messagingSenderId": "",
+    "appId": "",
+    "measurementId": "",
+    "serviceAccount": "keyfile.json"
+}
+
+#init firebase app
+firebase = pyrebase.initialize_app(config)
+#firebase storage
+storeage = firebase.storage()
+
+
 
 
 @app.route("/api/posts", methods=["GET"]) # this handles get requests only
