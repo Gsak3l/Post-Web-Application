@@ -1,1 +1,29 @@
-<p>add-post works!</p>
+<section>
+  <form *ngIf="!busy" (ngSubmit)="addPost(postForm.value)" [formGroup]="postForm">
+    <h2>Create a new post.</h2>
+    <p>fill the form to add a new post.</p>
+    <div class="formcontrol">
+      <label for="title"></label>
+      <input type="text" formControlName="title">
+    </div>
+
+    <div class="formcontrol">
+      <label for="content">Content</label>
+      <textarea formControlName="content" name="" id="" cols="30" rows="10"></textarea>
+    </div>
+
+    <div class="formcontrol">
+      <label for="cover">Choose a Cover</label>
+      <input type="file" name="cover" formControlName="cover" (change)="handleInput($event)">
+    </div>
+    <div>
+        <input type="submint" [disabled]="!postForm.valid" value="Submit">
+    </div>
+
+    <div *ngIf="busy" class="processing">
+        <p>Processing request, please stand by, you will be redirected soon...</p>
+        <div class="loader">Loading...</div>
+    </div>
+
+  </form>
+</section>
