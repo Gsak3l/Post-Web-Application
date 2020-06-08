@@ -17,7 +17,7 @@
       <input type="file" name="cover" formControlName="cover" (change)="handleInput($event)">
     </div>
     <div>
-        <input type="submint" [disabled]="!postForm.valid" value="Submit">
+        <input type="submit" [disabled]="!postForm.valid" value="Submit">
     </div>
 
     <div *ngIf="busy" class="processing">
